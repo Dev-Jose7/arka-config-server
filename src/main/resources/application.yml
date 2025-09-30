@@ -1,3 +1,35 @@
 spring:
   application:
     name: config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${CONFIG_REPO_URI}
+          username: ${GIT_USERNAME}
+          password: ${GIT_TOKEN}
+          default-label: main
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, refresh, env, configprops
+  endpoint:
+    health:
+      show-details: "when_authorized"
+    refresh:
+      enabled: true
+
+  server:
+    port: 8889
+
+info:
+  app:
+    name: config-server
+    description: Central server configuration
+    version: 0.1.0
+
+server:
+  port: 8888
