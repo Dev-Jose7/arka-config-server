@@ -11,6 +11,18 @@ spring:
           password: ${GIT_TOKEN}
           default-label: main
 
+  security:
+    user:
+      name: ${SECURITY_USER}
+      password: ${SECURITY_PASSWORD}
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${EUREKA_USERNAME}:${EUREKA_PASSWORD}@${EUREKA_URI}
+
 management:
   endpoints:
     web:
@@ -21,7 +33,6 @@ management:
       show-details: "when_authorized"
     refresh:
       enabled: true
-
   server:
     port: 8889
 
